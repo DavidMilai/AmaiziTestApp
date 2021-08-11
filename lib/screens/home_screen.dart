@@ -25,6 +25,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Users'),
+        actions: [
+          Selector<UsersService, bool>(
+              selector: (context, usersService) =>
+                  usersService.isLoadingUsersData,
+              builder: (context, loading, _) {
+                return IconButton(
+                    onPressed: loading ? null : () => usersService.getUsers(),
+                    icon: Icon(Icons.refresh));
+              })
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
