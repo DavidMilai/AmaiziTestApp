@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:test_app/config.dart';
 import 'package:test_app/routes.dart';
 import 'package:test_app/services/language_service.dart';
 
@@ -38,7 +39,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                   "Select Language",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.blueGrey,
+                    color: kTextColor,
                   ),
                 ),
               ),
@@ -53,7 +54,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                   child: Column(
                     children: languageService.allLanguages
                         .map((language) => GestureDetector(
-                              onTap: () => Navigator.pushNamed(
+                              onTap: () => Navigator.pushReplacementNamed(
                                   context, RouteConfig.home),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,11 +64,13 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                                     child: Row(
                                       children: [
                                         Text(language.name,
-                                            style: TextStyle(
-                                                color: Colors.blueGrey)),
+                                            style:
+                                                TextStyle(color: kTextColor)),
                                         Spacer(),
-                                        Icon(Icons.check,
-                                            color: Colors.blueGrey)
+                                        language.name.toLowerCase() == "english"
+                                            ? Icon(Icons.check,
+                                                color: kTextColor)
+                                            : Container()
                                       ],
                                     ),
                                   ),

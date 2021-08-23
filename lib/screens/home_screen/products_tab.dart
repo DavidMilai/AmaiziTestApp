@@ -186,26 +186,29 @@ class ProductsGrid extends StatelessWidget {
                   ),
                 ),
                 Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: kTextColor),
-                      ),
-                      Text(
-                        description,
-                        style: TextStyle(color: kTextColor, fontSize: 12),
-                      ),
-                      Text(
-                        "56000 FC",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: kTextColor),
-                      ),
-                    ],
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: kTextColor),
+                        ),
+                        Text(
+                          description,
+                          style: TextStyle(color: kTextColor, fontSize: 12),
+                        ),
+                        Text(
+                          "56000 FC",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: kTextColor),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],
