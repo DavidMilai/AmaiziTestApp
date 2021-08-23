@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:test_app/routes.dart';
 import 'package:test_app/services/language_service.dart';
 
 class SelectLanguageScreen extends StatefulWidget {
@@ -51,23 +52,28 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Column(
                     children: languageService.allLanguages
-                        .map((language) => Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 8, right: 8),
-                                  child: Row(
-                                    children: [
-                                      Text(language.name,
-                                          style: TextStyle(
-                                              color: Colors.blueGrey)),
-                                      Spacer(),
-                                      Icon(Icons.check, color: Colors.blueGrey)
-                                    ],
+                        .map((language) => GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                  context, RouteConfig.home),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 8, right: 8),
+                                    child: Row(
+                                      children: [
+                                        Text(language.name,
+                                            style: TextStyle(
+                                                color: Colors.blueGrey)),
+                                        Spacer(),
+                                        Icon(Icons.check,
+                                            color: Colors.blueGrey)
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Divider(color: Colors.white38)
-                              ],
+                                  Divider(color: Colors.white38)
+                                ],
+                              ),
                             ))
                         .toList(),
                   )),
