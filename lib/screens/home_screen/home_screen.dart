@@ -16,7 +16,6 @@ class _HomeScreenState extends State<HomeScreen> {
   int tab = 0;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: tab == 0 ? ProductsTab() : ProfileTab(),

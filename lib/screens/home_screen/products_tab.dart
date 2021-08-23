@@ -36,7 +36,10 @@ class _ProductsTabState extends State<ProductsTab> {
                 SizedBox(width: size.width * 0.31),
                 Text(
                   "AMAIZI",
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: kTextColor),
                 ),
                 Spacer(),
                 Container(
