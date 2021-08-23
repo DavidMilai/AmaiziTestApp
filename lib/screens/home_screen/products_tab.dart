@@ -8,12 +8,12 @@ class ProductsTab extends StatefulWidget {
 }
 
 class _ProductsTabState extends State<ProductsTab> {
+  int selectedIndex = 0;
   List<String> categories = [
     "Large Bottles",
     "Medium Bottles",
     "Small Bottles"
   ];
-  int selectedIndex = 0;
   Map<String, String> products = {
     "Big Bottles": "Big bottles description",
     "Medium Bottles": "Medium bottles description",
@@ -122,7 +122,9 @@ class _ProductsTabState extends State<ProductsTab> {
                   );
                 })),
         Expanded(
-          child: ProductsGrid(),
+          child: ProductsGrid(
+              title: products.keys.elementAt(selectedIndex),
+              description: products.values.elementAt(selectedIndex)),
         )
       ],
     );
@@ -130,6 +132,9 @@ class _ProductsTabState extends State<ProductsTab> {
 }
 
 class ProductsGrid extends StatelessWidget {
+  ProductsGrid({this.title, this.description});
+  final String title;
+  final String description;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -187,12 +192,12 @@ class ProductsGrid extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Big bottles",
+                        title,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: kTextColor),
                       ),
                       Text(
-                        "For use with 19L bottle",
+                        description,
                         style: TextStyle(color: kTextColor, fontSize: 12),
                       ),
                       Text(
