@@ -7,6 +7,10 @@ class Api extends DioApi {
   Future getUsers() async {
     return dio.get('/users');
   }
+
+  Future getLanguages() async {
+    return dio.get('/locale');
+  }
 }
 
 Api api = Api();

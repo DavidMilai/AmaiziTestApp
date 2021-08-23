@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_app/routes.dart';
+import 'package:test_app/services/language_service.dart';
 import 'package:test_app/services/users_service.dart';
 
 import 'data/database.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: usersService),
+          ChangeNotifierProvider.value(value: languageService),
         ],
         child: MaterialApp(
           initialRoute: RouteConfig.defaultRoute,
