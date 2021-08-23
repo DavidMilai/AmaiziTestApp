@@ -5,3 +5,4 @@ class Config {
 }
 
 const Color kDefaultColor = Color(0xffD2EAF5);
+const Color kTextColor = Color(0xff275D75);

@@ -1,4 +1,4 @@
-import 'package:test_app/screens/home_screen.dart';
+import 'package:test_app/screens/home_screen/home_screen.dart';
 import 'package:test_app/screens/select_language_screen.dart';
 import 'package:test_app/screens/spalsh_screen.dart';
 
