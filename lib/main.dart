@@ -13,6 +13,8 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+//TODO: flutter packages pub run build_runner build
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
