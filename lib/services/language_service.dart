@@ -5,12 +5,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:test_app/api/api.dart';
 import 'package:test_app/data/database.dart';
 import 'package:test_app/data/models/language.dart';
-import 'package:test_app/data/models/user_data.dart';
 
 class LanguageService extends ChangeNotifier {
   bool _isLoadingLanguages = false;
   bool get isLoadingLanguages => _isLoadingLanguages;
-  List<UserData> get allUsers => db.userData.values.toList();
+  List<Language> get allLanguages => db.languages.values.toList();
 
   set isLoadingLanguages(bool value) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
