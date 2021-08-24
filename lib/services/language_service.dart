@@ -62,6 +62,7 @@ class LanguageService extends ChangeNotifier {
     List<Language> languages =
         data.map<Language>((element) => Language.fromMap(element)).toList();
     db.languages.addAll(languages);
+    notifyListeners();
   }
 }
 

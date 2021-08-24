@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:test_app/config.dart';
+import 'package:test_app/data/models/language.dart';
 import 'package:test_app/routes.dart';
 import 'package:test_app/services/language_service.dart';
 
@@ -44,42 +46,52 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                 ),
               ),
               SizedBox(width: double.infinity, height: size.height * 0.05),
-              Container(
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white54),
-                      color: Colors.white.withOpacity(0.5),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Column(
-                    children: languageService.allLanguages
-                        .map((language) => GestureDetector(
-                              onTap: () => Navigator.pushReplacementNamed(
-                                  context, RouteConfig.home),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 8, right: 8),
-                                    child: Row(
+              Selector<LanguageService, List<Language>>(
+                  selector: (context, languageService) =>
+                      languageService.allLanguages,
+                  builder: (context, languages, _) {
+                    return Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white54),
+                            color: Colors.white.withOpacity(0.5),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        child: Column(
+                          children: languages
+                              .map((language) => GestureDetector(
+                                    onTap: () => Navigator.pushReplacementNamed(
+                                        context, RouteConfig.home),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(language.name,
-                                            style:
-                                                TextStyle(color: kTextColor)),
-                                        Spacer(),
-                                        language.name.toLowerCase() == "english"
-                                            ? Icon(Icons.check,
-                                                color: kTextColor)
-                                            : Container()
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          child: Row(
+                                            children: [
+                                              Text(language.name,
+                                                  style: TextStyle(
+                                                      color: kTextColor)),
+                                              Spacer(),
+                                              language.name.toLowerCase() ==
+                                                      "english"
+                                                  ? Icon(Icons.check,
+                                                      color: kTextColor)
+                                                  : Container()
+                                            ],
+                                          ),
+                                        ),
+                                        Divider(color: Colors.white38)
                                       ],
                                     ),
-                                  ),
-                                  Divider(color: Colors.white38)
-                                ],
-                              ),
-                            ))
-                        .toList(),
-                  )),
+                                  ))
+                              .toList(),
+                        ));
+                  }),
             ],
           ),
         ),
