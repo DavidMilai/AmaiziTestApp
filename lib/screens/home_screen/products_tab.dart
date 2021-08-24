@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../config.dart';
 
@@ -9,6 +10,7 @@ class ProductsTab extends StatefulWidget {
 
 class _ProductsTabState extends State<ProductsTab> {
   int selectedIndex = 0;
+  ItemScrollController _scrollController = ItemScrollController();
   List<String> categories = [
     "Large Bottles",
     "Medium Bottles",
@@ -19,6 +21,11 @@ class _ProductsTabState extends State<ProductsTab> {
     "Medium Bottles": "Medium bottles description",
     "Small Bottles": "Small bottles description",
   };
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +98,8 @@ class _ProductsTabState extends State<ProductsTab> {
                   return GestureDetector(
                     onTap: () {
                       selectedIndex = index;
+                      _scrollController.scrollTo(
+                          index: selectedIndex, duration: Duration(seconds: 1));
                       setState(() {});
                     },
                     child: Container(
@@ -122,9 +131,31 @@ class _ProductsTabState extends State<ProductsTab> {
                   );
                 })),
         Expanded(
-          child: ProductsGrid(
-              title: products.keys.elementAt(selectedIndex),
-              description: products.values.elementAt(selectedIndex)),
+          child: ScrollablePositionedList.builder(
+            itemScrollController: _scrollController,
+            itemPositionsListener: ItemPositionsListener.create(),
+            itemCount: categories.length,
+            itemBuilder: (context, item) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    color: Colors.grey.withOpacity(0.05),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20, bottom: 5),
+                      child: Text(categories[item],
+                          style:
+                              TextStyle(color: Colors.blueGrey, fontSize: 20)),
+                    ),
+                  ),
+                  ProductsGrid(
+                      title: products.keys.elementAt(item),
+                      description: products.values.elementAt(item)),
+                ],
+              );
+            },
+          ),
         )
       ],
     );
@@ -154,7 +185,7 @@ class ProductsGrid extends StatelessWidget {
                 Align(
                   alignment: Alignment.topRight,
                   child: Container(
-                    margin: EdgeInsets.all(20),
+                    margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
                     height: 130,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
