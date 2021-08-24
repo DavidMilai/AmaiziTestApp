@@ -185,7 +185,8 @@ class ProductsGrid extends StatelessWidget {
                 Align(
                   alignment: Alignment.topRight,
                   child: Container(
-                    margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                    margin: EdgeInsets.only(
+                        left: 20, right: 20, bottom: 20, top: 10),
                     height: 130,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -197,7 +198,7 @@ class ProductsGrid extends StatelessWidget {
                   child: Container(
                     width: 25,
                     height: 25,
-                    margin: EdgeInsets.only(right: 8, top: 8),
+                    margin: EdgeInsets.only(right: 10),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(8)),
